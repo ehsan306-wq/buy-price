@@ -1,11 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Button, Typography } from '@mui/material';
 import Header from '../components/header';
 import SliderSection from '../components/slider';
 import CardsSection from '../components/card';
 import FaqSection from '../components/faqsSection';
+import BuyPriceForm from '../components/SubmissionForms/buyPriceForm';
+import SubmitDealForm from '../components/SubmissionForms/submitDealForm';
 
 const EzyResPage = () => {
+  const [showBuyPriceForm, setShowBuyPriceForm] = useState(false);
+  const [showSubmitDealForm, setShowSubmitDealForm] = useState(false);
+  const [showReturnButton, setShowReturnButton] = useState(false);
+
+  const handleBuyPriceClick = () => {
+    setShowBuyPriceForm(true);
+    setShowSubmitDealForm(false);
+    setShowReturnButton(true);
+  };
+
+  const handleSubmitDealClick = () => {
+    setShowSubmitDealForm(true);
+    setShowBuyPriceForm(false);
+    setShowReturnButton(true);
+  };
+
+  const handleReturnClick = () => {
+    setShowBuyPriceForm(false);
+    setShowSubmitDealForm(false);
+    setShowReturnButton(false);
+  };
+
   return (
     <div>
       <Header />
@@ -33,37 +57,69 @@ const EzyResPage = () => {
           How can we help you?
         </Typography>
 
+        {showBuyPriceForm && <BuyPriceForm />}
+        {showSubmitDealForm && <SubmitDealForm />}
+
         <div>
-          <Button
-            variant="contained"
-            sx={{
-              margin: '10px',
-              backgroundColor: '#42885e',
-              padding: '10px 15px',
-              borderRadius: '8px',
-              '&:hover': {
-                backgroundColor: '#386048',
-              }
-            }}
-          >
-            Request a Buy Price
-          </Button>
-          <span>OR</span>
-          <Button
-            variant="contained"
-            sx={{
-              margin: '10px',
-              backgroundColor: '#42885e',
-              padding: '10px 15px',
-              borderRadius: '8px',
-              '&:hover': {
-                backgroundColor: '#386048',
-              }
-            }}
-          >
-            Submit a Deal
-          </Button>
+          {showReturnButton && (
+            <Button
+              variant="contained"
+              sx={{
+                margin: '10px',
+                backgroundColor: '#42885e',
+                padding: '10px 15px',
+                borderRadius: '8px',
+                '&:hover': {
+                  backgroundColor: '#386048',
+                }
+              }}
+              onClick={handleReturnClick}
+            >
+              Return to Home
+            </Button>
+          )}
+          {!showSubmitDealForm && (
+            <Button
+              variant="contained"
+              sx={{
+                margin: '10px',
+                backgroundColor: '#42885e',
+                padding: '10px 15px',
+                borderRadius: '8px',
+                '&:hover': {
+                  backgroundColor: '#386048',
+                }
+              }}
+              onClick={() => {
+                handleBuyPriceClick();
+                setShowReturnButton(true);
+              }}
+            >
+              Request a Buy Price
+            </Button>
+          )}
+          {!showBuyPriceForm && (
+            <Button
+              variant="contained"
+              sx={{
+                margin: '10px',
+                backgroundColor: '#42885e',
+                padding: '10px 15px',
+                borderRadius: '8px',
+                '&:hover': {
+                  backgroundColor: '#386048',
+                }
+              }}
+              onClick={() => {
+                handleSubmitDealClick();
+                setShowReturnButton(true);
+              }}
+            >
+              Submit a Deal
+            </Button>
+          )}
         </div>
+
         <CardsSection />
         <SliderSection />
         <FaqSection />
