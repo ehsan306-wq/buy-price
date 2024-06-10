@@ -114,12 +114,6 @@ export default function SubmitDealForm(props) {
                                     })}
                                     error={!!errors.location}
                                 />
-                                {/* Conditionally render error message */}
-                                {errors.location && (
-                                    <FormHelperText style={{ fontSize: '12px', color: 'red' }}>
-                                        {errors.location}
-                                    </FormHelperText>
-                                )}
                                 <div className="autocomplete-dropdown-container">
                                     {loading && <div>Loading...</div>}
                                     {suggestions.map((suggestion) => {
@@ -140,6 +134,13 @@ export default function SubmitDealForm(props) {
                             </div>
                         )}
                     </PlacesAutocomplete>
+
+                    {/* Conditionally render error message */}
+                    {errors.location && (
+                        <FormHelperText style={{ fontSize: '12px', color: 'red', paddingLeft: '1rem' }}>
+                            {errors.location}
+                        </FormHelperText>
+                    )}
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <FormControl fullWidth style={{ marginLeft: '8px' }} error={!!errors.rehabLevel}>

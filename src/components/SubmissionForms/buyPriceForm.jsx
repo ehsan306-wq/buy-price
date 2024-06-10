@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { Button, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { Button, FormControl, FormHelperText, InputLabel, MenuItem, Select } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import PlacesAutocomplete, {
     geocodeByAddress,
@@ -206,6 +206,12 @@ export default function BuyPriceForm(props) {
                             </div>
                         )}
                     </PlacesAutocomplete>
+                    {/* Conditionally render error message */}
+                    {errors.location && (
+                        <FormHelperText style={{ fontSize: '12px', color: 'red', paddingLeft: '1rem' }}>
+                            {errors.location}
+                        </FormHelperText>
+                    )}
                 </Grid>
             </Grid>
             <Button
