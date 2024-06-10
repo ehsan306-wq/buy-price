@@ -11,23 +11,27 @@ const EzyResPage = () => {
   const [showBuyPriceForm, setShowBuyPriceForm] = useState(false);
   const [showSubmitDealForm, setShowSubmitDealForm] = useState(false);
   const [showReturnButton, setShowReturnButton] = useState(false);
+  const [isChildFormCalled, setShowChildForm] = useState(false);
 
   const handleBuyPriceClick = () => {
     setShowBuyPriceForm(true);
     setShowSubmitDealForm(false);
     setShowReturnButton(true);
+    setShowChildForm(true);
   };
 
   const handleSubmitDealClick = () => {
     setShowSubmitDealForm(true);
     setShowBuyPriceForm(false);
     setShowReturnButton(true);
+    setShowChildForm(true);
   };
 
   const handleReturnClick = () => {
     setShowBuyPriceForm(false);
     setShowSubmitDealForm(false);
     setShowReturnButton(false);
+    setShowChildForm(false);
   };
 
   return (
@@ -57,28 +61,11 @@ const EzyResPage = () => {
           How can we help you?
         </Typography>
 
-        {showBuyPriceForm && <BuyPriceForm />}
-        {showSubmitDealForm && <SubmitDealForm />}
+        {showBuyPriceForm && <BuyPriceForm onReturnClick={handleReturnClick} />}
+        {showSubmitDealForm && <SubmitDealForm onReturnClick={handleReturnClick} />}
 
         <div>
-          {showReturnButton && (
-            <Button
-              variant="contained"
-              sx={{
-                margin: '10px',
-                backgroundColor: '#42885e',
-                padding: '10px 15px',
-                borderRadius: '8px',
-                '&:hover': {
-                  backgroundColor: '#386048',
-                }
-              }}
-              onClick={handleReturnClick}
-            >
-              Return to Home
-            </Button>
-          )}
-          {!showSubmitDealForm && (
+          {(!showSubmitDealForm && !isChildFormCalled) && (
             <Button
               variant="contained"
               sx={{
@@ -98,7 +85,7 @@ const EzyResPage = () => {
               Request a Buy Price
             </Button>
           )}
-          {!showBuyPriceForm && (
+          {(!showBuyPriceForm && !isChildFormCalled) && (
             <Button
               variant="contained"
               sx={{
