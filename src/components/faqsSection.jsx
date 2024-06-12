@@ -20,7 +20,7 @@ const FaqSection = () => {
   return (
     <div style={{ marginBottom: '40px' }}>
       <Typography variant="h5" sx={{ marginTop: '70px', marginBottom: "30px" }}>
-        <h3 style={{ textAlign: 'left' }}> Frequently Asked Questions</h3>
+        <p style={{ textAlign: 'left', fontSize: '20px', fontWeight: 'bold' }}> Frequently Asked Questions</p>
       </Typography>
       {faqData.map((faq, index) => (
         <Accordion key={index}>

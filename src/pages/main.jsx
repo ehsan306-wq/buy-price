@@ -10,27 +10,23 @@ import SubmitDealForm from '../components/SubmissionForms/submitDealForm';
 const EzyResPage = () => {
   const [showBuyPriceForm, setShowBuyPriceForm] = useState(false);
   const [showSubmitDealForm, setShowSubmitDealForm] = useState(false);
-  const [showReturnButton, setShowReturnButton] = useState(false);
   const [isChildFormCalled, setShowChildForm] = useState(false);
 
   const handleBuyPriceClick = () => {
     setShowBuyPriceForm(true);
     setShowSubmitDealForm(false);
-    setShowReturnButton(true);
     setShowChildForm(true);
   };
 
   const handleSubmitDealClick = () => {
     setShowSubmitDealForm(true);
     setShowBuyPriceForm(false);
-    setShowReturnButton(true);
     setShowChildForm(true);
   };
 
   const handleReturnClick = () => {
     setShowBuyPriceForm(false);
     setShowSubmitDealForm(false);
-    setShowReturnButton(false);
     setShowChildForm(false);
   };
 
@@ -79,7 +75,6 @@ const EzyResPage = () => {
               }}
               onClick={() => {
                 handleBuyPriceClick();
-                setShowReturnButton(true);
               }}
             >
               Request a Buy Price
@@ -99,7 +94,6 @@ const EzyResPage = () => {
               }}
               onClick={() => {
                 handleSubmitDealClick();
-                setShowReturnButton(true);
               }}
             >
               Submit a Deal

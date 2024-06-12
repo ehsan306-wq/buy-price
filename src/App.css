@@ -46,3 +46,12 @@
   text-align: left;
   padding: 0.6rem;
 }
+
+.css-1ualgfl-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root {
+  text-align: left;
+}
+
+.css-j204z7-MuiFormControlLabel-root .MuiFormControlLabel-label {
+  text-align: left;
+  font-size: 14px;
+}
